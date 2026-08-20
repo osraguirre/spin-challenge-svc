@@ -1,6 +1,6 @@
 package com.spin.validation;
 
-import com.spin.constants.TransactionConstants;
+import com.spin.constants.Constants;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -16,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target(TYPE)
 @Retention(RUNTIME)
 public @interface DebitAmountLimit {
-    String message() default TransactionConstants.MAX_DEBIT_AMOUNT_MESSAGE;
+    String message() default Constants.MAX_DEBIT_AMOUNT_MESSAGE;
 
     Class<?>[] groups() default {};
 

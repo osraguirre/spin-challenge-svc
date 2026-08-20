@@ -1,6 +1,6 @@
 package com.spin.constants;
 
-public final class TransactionConstants {
+public final class Constants {
     public static final String API_BASE_PATH = "/api/v1";
     public static final int MAX_ACCOUNT_ID_LENGTH = 50;
     public static final int MAX_AMOUNT_INTEGER_DIGITS = 15;
@@ -49,6 +49,6 @@ public final class TransactionConstants {
     public static final String DESCRIPTION_EXAMPLE = "Transferencia recibida.";
     public static final String DESCRIPTION_SIZE_MESSAGE = "La descripcion no puede superar los 255 caracteres.";
 
-    private TransactionConstants() {
+    private Constants() {
     }
 }

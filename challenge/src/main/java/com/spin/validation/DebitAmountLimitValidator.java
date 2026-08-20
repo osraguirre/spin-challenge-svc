@@ -1,14 +1,14 @@
 package com.spin.validation;
 
 import com.spin.model.TransactionsModel;
-import com.spin.constants.TransactionConstants;
+import com.spin.constants.Constants;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import java.math.BigDecimal;
 
 public class DebitAmountLimitValidator implements ConstraintValidator<DebitAmountLimit, TransactionsModel> {
-    private static final BigDecimal MAX_DEBIT_AMOUNT = new BigDecimal(TransactionConstants.MAX_DEBIT_AMOUNT);
+    private static final BigDecimal MAX_DEBIT_AMOUNT = new BigDecimal(Constants.MAX_DEBIT_AMOUNT);
 
     @Override
     public boolean isValid(TransactionsModel transaction, ConstraintValidatorContext context) {
@@ -16,7 +16,7 @@ public class DebitAmountLimitValidator implements ConstraintValidator<DebitAmoun
             return true;
         }
 
-        if (!TransactionConstants.DEBIT_TYPE.equalsIgnoreCase(transaction.getType())) {
+        if (!Constants.DEBIT_TYPE.equalsIgnoreCase(transaction.getType())) {
             return true;
         }
 

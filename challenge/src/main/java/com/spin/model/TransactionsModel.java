@@ -2,7 +2,7 @@ package com.spin.model;
 
 import java.math.BigDecimal;
 
-import com.spin.constants.TransactionConstants;
+import com.spin.constants.Constants;
 import io.swagger.v3.oas.annotations.media.Schema;
 import com.spin.validation.DebitAmountLimit;
 import jakarta.validation.constraints.DecimalMin;
@@ -17,39 +17,39 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @DebitAmountLimit
-@Schema(description = TransactionConstants.MODEL_DESCRIPTION)
+@Schema(description = Constants.MODEL_DESCRIPTION)
 public class TransactionsModel {
 
-    @Schema(description = TransactionConstants.ACCOUNT_ID_DESCRIPTION, requiredMode = Schema.RequiredMode.REQUIRED,
-        example = TransactionConstants.ACCOUNT_ID_EXAMPLE)
-    @NotBlank(message = TransactionConstants.ACCOUNT_ID_REQUIRED_MESSAGE)
-    @Size(max = TransactionConstants.MAX_ACCOUNT_ID_LENGTH, message = TransactionConstants.ACCOUNT_ID_SIZE_MESSAGE)
+    @Schema(description = Constants.ACCOUNT_ID_DESCRIPTION, requiredMode = Schema.RequiredMode.REQUIRED,
+        example = Constants.ACCOUNT_ID_EXAMPLE)
+    @NotBlank(message = Constants.ACCOUNT_ID_REQUIRED_MESSAGE)
+    @Size(max = Constants.MAX_ACCOUNT_ID_LENGTH, message = Constants.ACCOUNT_ID_SIZE_MESSAGE)
     private String accountId;
 
-    @Schema(description = TransactionConstants.TYPE_DESCRIPTION, example = TransactionConstants.TYPE_EXAMPLE)
-    @NotBlank(message = TransactionConstants.TYPE_REQUIRED_MESSAGE)
-    @Pattern(regexp = TransactionConstants.TYPE_PATTERN, message = TransactionConstants.TYPE_PATTERN_MESSAGE)
+    @Schema(description = Constants.TYPE_DESCRIPTION, example = Constants.TYPE_EXAMPLE)
+    @NotBlank(message = Constants.TYPE_REQUIRED_MESSAGE)
+    @Pattern(regexp = Constants.TYPE_PATTERN, message = Constants.TYPE_PATTERN_MESSAGE)
     private String type;
 
-    @Schema(description = TransactionConstants.AMOUNT_DESCRIPTION,
-        minimum = TransactionConstants.AMOUNT_MINIMUM,
+    @Schema(description = Constants.AMOUNT_DESCRIPTION,
+        minimum = Constants.AMOUNT_MINIMUM,
         exclusiveMinimum = true,
-        example = TransactionConstants.AMOUNT_EXAMPLE)
-    @NotNull(message = TransactionConstants.AMOUNT_REQUIRED_MESSAGE)
-    @DecimalMin(value = TransactionConstants.AMOUNT_MINIMUM, inclusive = false,
-        message = TransactionConstants.AMOUNT_MINIMUM_MESSAGE)
-    @Digits(integer = TransactionConstants.MAX_AMOUNT_INTEGER_DIGITS,
-        fraction = TransactionConstants.MAX_AMOUNT_FRACTION_DIGITS,
-        message = TransactionConstants.AMOUNT_DIGITS_MESSAGE)
+        example = Constants.AMOUNT_EXAMPLE)
+    @NotNull(message = Constants.AMOUNT_REQUIRED_MESSAGE)
+    @DecimalMin(value = Constants.AMOUNT_MINIMUM, inclusive = false,
+        message = Constants.AMOUNT_MINIMUM_MESSAGE)
+    @Digits(integer = Constants.MAX_AMOUNT_INTEGER_DIGITS,
+        fraction = Constants.MAX_AMOUNT_FRACTION_DIGITS,
+        message = Constants.AMOUNT_DIGITS_MESSAGE)
     private BigDecimal amount;
 
-    @Schema(description = TransactionConstants.CURRENCY_DESCRIPTION, example = TransactionConstants.CURRENCY_EXAMPLE)
-    @NotBlank(message = TransactionConstants.CURRENCY_REQUIRED_MESSAGE)
-    @Pattern(regexp = TransactionConstants.CURRENCY_PATTERN, message = TransactionConstants.CURRENCY_PATTERN_MESSAGE)
+    @Schema(description = Constants.CURRENCY_DESCRIPTION, example = Constants.CURRENCY_EXAMPLE)
+    @NotBlank(message = Constants.CURRENCY_REQUIRED_MESSAGE)
+    @Pattern(regexp = Constants.CURRENCY_PATTERN, message = Constants.CURRENCY_PATTERN_MESSAGE)
     private String currency;
 
-    @Schema(description = TransactionConstants.DESCRIPTION_DESCRIPTION, example = TransactionConstants.DESCRIPTION_EXAMPLE)
-    @Size(max = TransactionConstants.MAX_DESCRIPTION_LENGTH, message = TransactionConstants.DESCRIPTION_SIZE_MESSAGE)
+    @Schema(description = Constants.DESCRIPTION_DESCRIPTION, example = Constants.DESCRIPTION_EXAMPLE)
+    @Size(max = Constants.MAX_DESCRIPTION_LENGTH, message = Constants.DESCRIPTION_SIZE_MESSAGE)
     private String description;
 
 }
