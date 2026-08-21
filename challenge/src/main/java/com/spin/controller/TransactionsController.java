@@ -46,7 +46,7 @@ public class TransactionsController {
             content = @Content(schema = @Schema(implementation = TransactionResponse.class)))
         @ApiResponse(responseCode = "400", description = Constants.BAD_REQUEST_RESPONSE)
         @ApiResponse(responseCode = "500", description = Constants.INTERNAL_SERVER_ERROR_RESPONSE)
-    public ResponseEntity<TransactionResponse> requestTransactions(@Valid @RequestBody TransactionsModel transactionsModel) {
+    public ResponseEntity<TransactionResponse> executeTransaction(@Valid @RequestBody TransactionsModel transactionsModel) {
         return ResponseEntity.ok(transactionService.executeTransaction(transactionsModel));
     }
 
