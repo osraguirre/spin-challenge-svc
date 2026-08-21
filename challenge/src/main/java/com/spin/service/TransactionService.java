@@ -80,7 +80,7 @@ public class TransactionService {
      * @param status filtra por estado de la transaccion, o {@code null} para omitir
      * @param type filtra por tipo de transaccion, o {@code null} para omitir
      * @param limit cantidad maxima de resultados por pagina
-     * @param offset cantidad de resultados a omitir
+     * @param offset desplazamiento expresado como {@code page * limit} (debe ser múltiplo de {@code limit})
      * @return las transacciones que coinciden con los filtros
      */
     public List<TransactionResponse> findTransactions(
