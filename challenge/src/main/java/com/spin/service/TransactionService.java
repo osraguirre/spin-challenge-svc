@@ -20,6 +20,7 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -86,7 +87,8 @@ public class TransactionService {
     public List<TransactionResponse> findTransactions(
             String accountId, String status, String type, int limit, int offset) {
         int page = offset / limit;
-        Pageable pageable = PageRequest.of(page, limit);
+        Sort sort = Sort.by(Sort.Direction.DESC, "createdAt").and(Sort.by(Sort.Direction.DESC, "id"));
+        Pageable pageable = PageRequest.of(page, limit, sort);
         Page<Transaction> transactions = transactionRepository.findAll(
             TransactionSpecifications.withFilters(accountId, status, type), pageable);
         log.info("Transactions queried, accountId: {}, status: {}, type: {}, page: {}, limit: {}, results: {}",

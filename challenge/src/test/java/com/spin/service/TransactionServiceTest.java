@@ -20,10 +20,13 @@ import com.spin.model.TransactionsModel;
 import com.spin.repository.TransactionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
 @ExtendWith(MockitoExtension.class)
@@ -100,6 +103,22 @@ class TransactionServiceTest {
 
         assertEquals(1, service.findTransactions("acc-123456", "EXECUTED", "CREDIT", 10, 10).size());
         verify(transactionRepository).findAll(any(Specification.class), any(PageRequest.class));
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    void findTransactionsAppliesDeterministicSortOrder() {
+        when(transactionRepository.findAll(any(Specification.class), any(Pageable.class)))
+                .thenReturn(new PageImpl<>(List.of()));
+
+        TransactionService service = new TransactionService(providerClient, transactionMapper, transactionRepository);
+        service.findTransactions(null, null, null, 10, 0);
+
+        ArgumentCaptor<Pageable> pageableCaptor = ArgumentCaptor.forClass(Pageable.class);
+        verify(transactionRepository).findAll(any(Specification.class), pageableCaptor.capture());
+
+        Sort expectedSort = Sort.by(Sort.Direction.DESC, "createdAt").and(Sort.by(Sort.Direction.DESC, "id"));
+        assertEquals(expectedSort, pageableCaptor.getValue().getSort());
     }
 
     private TransactionResponse response(String status, String providerTransactionId) {
