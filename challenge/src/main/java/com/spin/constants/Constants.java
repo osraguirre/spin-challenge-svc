@@ -35,6 +35,7 @@ public final class Constants {
     public static final String TYPE_EXAMPLE = "CREDIT o DEBIT";
     public static final String TYPE_REQUIRED_MESSAGE = "El tipo de transaccion es obligatorio.";
     public static final String TYPE_PATTERN = "CREDIT|DEBIT";
+    public static final String TYPE_EXAMPLE_CREDIT = "CREDIT";
     public static final String TYPE_PATTERN_MESSAGE = "El tipo de transaccion debe ser CREDIT o DEBIT.";
     public static final String DEBIT_TYPE = "DEBIT";
 

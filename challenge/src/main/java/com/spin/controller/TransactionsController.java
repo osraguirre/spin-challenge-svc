@@ -62,7 +62,7 @@ public class TransactionsController {
             @RequestParam(required = false) String accountId,
             @Parameter(description = Constants.STATUS_FILTER_DESCRIPTION, example = Constants.STATUS_EXAMPLE)
             @RequestParam(required = false) String status,
-            @Parameter(description = Constants.TYPE_FILTER_DESCRIPTION, example = Constants.TYPE_PATTERN)
+            @Parameter(description = Constants.TYPE_FILTER_DESCRIPTION, example = Constants.TYPE_EXAMPLE_CREDIT)
             @RequestParam(required = false) String type,
             @Parameter(description = Constants.PAGE_DESCRIPTION)
             @RequestParam(defaultValue = "0") int page,
