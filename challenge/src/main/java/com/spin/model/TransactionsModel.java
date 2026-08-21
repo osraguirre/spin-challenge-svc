@@ -2,9 +2,9 @@ package com.spin.model;
 
 import java.math.BigDecimal;
 
+import com.spin.config.SensitiveDataMasker;
 import com.spin.constants.Constants;
 import io.swagger.v3.oas.annotations.media.Schema;
-import com.spin.validation.DebitAmountLimit;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-@DebitAmountLimit
 @Schema(description = Constants.MODEL_DESCRIPTION)
 public class TransactionsModel {
 
@@ -51,5 +50,12 @@ public class TransactionsModel {
     @Schema(description = Constants.DESCRIPTION_DESCRIPTION, example = Constants.DESCRIPTION_EXAMPLE)
     @Size(max = Constants.MAX_DESCRIPTION_LENGTH, message = Constants.DESCRIPTION_SIZE_MESSAGE)
     private String description;
+
+
+    @Override
+    public String toString() {
+        return "TransactionsModel[accountId='%s', type='%s', amount=%s, currency='%s', description='%s']"
+                .formatted(SensitiveDataMasker.maskAccountId(accountId), type, amount, currency, description);
+    }
 
 }
